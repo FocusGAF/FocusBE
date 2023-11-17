@@ -3,7 +3,7 @@ const User = require("../models/userSchema.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-async function signup(req, res) {
+const signup = async (req, res) => {
   const saltRounds = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS));
   const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
   console.log(saltRounds);
@@ -16,6 +16,6 @@ async function signup(req, res) {
   } catch (error) {
     res.status(500).send("Email duplicado");
   }
-}
+};
 
 module.exports = { signup };
