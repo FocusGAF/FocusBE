@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const signup = async (req, res) => {
   const saltRounds = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS));
   const hashedPassword = bcrypt.hashSync(req.body.password, saltRounds);
-  console.log(saltRounds);
   req.body.password = hashedPassword;
   try {
     const user = await User.create(req.body);
