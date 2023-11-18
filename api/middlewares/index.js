@@ -11,7 +11,6 @@ function checkAuth(req, res, next) {
     async (err, result) => {
       if (err) return res.status(401).send("Token not valid");
       const user = await User.findOne({ email: result.email } );
-      console.log(user)
       if (!user) return res.status(401).send("User not found");
 
       res.locals.user = user;
