@@ -21,6 +21,7 @@ async function login(req, res) {
     const [user] = await User.find({
       email: req.body.email,
     });
+    console.log(user)
     if (!user)
       return res.status(400).send("Error: Email or Password incorrect");
 
