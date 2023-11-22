@@ -7,7 +7,7 @@ const getOneProject = async (req, res)=>{
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "Invalid ID"})
     }
-    const project = await Project.findById(id)
+    const project = await Project.findById(id).populate({path: 'springs', populate: 'tasks'})
     if(!project){
         return res.status(404).json({error: "No project found"})
     }
