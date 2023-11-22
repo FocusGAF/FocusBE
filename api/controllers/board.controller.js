@@ -13,7 +13,7 @@ const getOneBoard = async (req, res) => {
     res.status(200).json(board)
 }
 const getAllBoards = async (req, res) => {
-    const boards = await Board.find()
+    const boards = await Board.find().populate('tasks')
     if (!boards) {
         return res.status(404).json({ error: "No boards found" })
     }

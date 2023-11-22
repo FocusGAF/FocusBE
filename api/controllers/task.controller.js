@@ -1,4 +1,5 @@
 const Task = require("../models/taskSchema");
+const Board = require('../models/boardSchema')
 const mongoose = require("mongoose");
 
 const getOneTask = async (req, res) => {
