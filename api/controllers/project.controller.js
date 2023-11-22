@@ -14,7 +14,7 @@ const getOneProject = async (req, res)=>{
     res.status(200).json(project)
 }
 const getAllProjects = async (req, res)=>{
-    const projects = await Project.find()
+    const projects = await Project.find().populate('springs')
     if(!projects){
         return res.status(404).json({error: "No projects found"})
     }
