@@ -4,7 +4,10 @@ const bcrypt = require("bcrypt");
 
 const getMyProfile = async (req, res) => {
   const { _id } = res.locals.user;
-  const user = await User.find({ _id });
+  const user = await User.find({ _id }).populate({
+    path: "projects",
+    populate: { path: "springs", populate: "tasks" },
+  });
   res.status(200).json(user);
 };
 const getOneUser = async (req, res) => {
