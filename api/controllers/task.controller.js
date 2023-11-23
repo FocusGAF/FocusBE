@@ -1,5 +1,5 @@
 const Task = require("../models/taskSchema");
-const Board = require('../models/boardSchema')
+const Board = require("../models/boardSchema");
 const mongoose = require("mongoose");
 
 const getOneTask = async (req, res) => {
@@ -38,7 +38,7 @@ const deleteTask = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "Invalid ID" });
   }
-  const task = await Task.findByIdAndDelete({ _id: id });
+  const task = await Task.findOneAndDelete({ _id: id });
 
   if (!task) {
     return res.status(404).json({ error: "No Task found" });
