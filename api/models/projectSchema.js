@@ -1,3 +1,4 @@
+const { simpleFaker } = require('@faker-js/faker');
 const mongoose = require("mongoose");
 const Board = require("../models/boardSchema");
 const User = require("../models/userSchema");
@@ -9,8 +10,16 @@ const projectSchema = new mongoose.Schema({
       admins: [{ type: mongoose.SchemaTypes.ObjectId, ref: "User" }],
       members: [{ type: mongoose.SchemaTypes.ObjectId, ref: "User" }],
     },
-  },
+    },
+  invitationId:  { type: String, unique: true},
   springs: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Board" }],
+});
+
+projectSchema.pre("save", function (next) {
+  if (!this.invitationId) {
+    this.invitationId = simpleFaker.string.uuid();
+  }
+  next();
 });
 
 projectSchema.post("findOneAndDelete", async function (doc) {
