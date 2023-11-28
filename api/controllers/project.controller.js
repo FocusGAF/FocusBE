@@ -59,10 +59,19 @@ const createProject = async (req, res) => {
   res.status(200).json(project);
 };
 
+const getProjectByInvCode = async (req, res) => {
+  const { id } = req.params;
+  const project = await Project.find({ invitationId: id });
+  if (!project) {
+    return res.status(404).json({ error: "No project found" });
+  }
+  res.status(200).json(project);
+};
 module.exports = {
   getOneProject,
   getAllProjects,
   deleteProject,
   updateProject,
   createProject,
+  getProjectByInvCode,
 };

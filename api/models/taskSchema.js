@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema({
   notes: { type: String },
   description: { type: String },
   files: { type: String },
-  priority: { type: String, enum: ["Low", "Medium", "High"] },
+  priority: { type: String, enum: ["Low", "Medium", "High"], default: "High" },
   subtasks: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Subtask" }],
 });
 taskSchema.post("findOneAndDelete", async function (doc) {
