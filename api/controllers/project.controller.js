@@ -61,7 +61,10 @@ const createProject = async (req, res) => {
 
 const getProjectByInvCode = async (req, res) => {
   const { id } = req.params;
-  const project = await Project.find({ invitationId: id });
+  const project = await Project.find({ invitationId: id }).populate({
+    path: "springs",
+    populate: "tasks",
+  });
   if (!project) {
     return res.status(404).json({ error: "No project found" });
   }
