@@ -11,7 +11,7 @@ const projectSchema = new mongoose.Schema({
       admins: [
         {
           type: {
-            name: String,
+            name: { type: String, default: "pepe" },
             id: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
           },
         },
