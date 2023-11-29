@@ -8,7 +8,14 @@ const projectSchema = new mongoose.Schema({
   participants: {
     type: {
       owner: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
-      admins: [{ type: mongoose.SchemaTypes.ObjectId, ref: "User" }],
+      admins: [
+        {
+          type: {
+            name: String,
+            id: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
+          },
+        },
+      ],
       members: [{ type: mongoose.SchemaTypes.ObjectId, ref: "User" }],
     },
   },
