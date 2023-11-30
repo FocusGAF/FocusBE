@@ -12,6 +12,7 @@ const projectSchema = new mongoose.Schema({
         {
           type: {
             name: { type: String, default: "pepe" },
+            last_name: { type: String, default: "luis" },
             id: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
           },
         },
